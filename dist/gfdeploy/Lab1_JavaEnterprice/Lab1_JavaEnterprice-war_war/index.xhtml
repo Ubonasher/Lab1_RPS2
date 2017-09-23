@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form styleClass="login_form" id="login_form">
+            <table align="left" width="350">
+                <tr>
+                    <td width="100" align="left">Ваше имя:<span style="color:red;">*</span></td>
+                    <td width="200"><h:inputText id="fio" value="#{StatefullName.fio}" required="true" requiredMessage="Введите ФИО">
+                        </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="middle">
+                        <h:commandButton action="#{StatefullName.login()}" value="Представится" styleClass="login_button" >
+                        </h:commandButton>                           
+                    </td>
+                </tr> 
+            </table>
+        </h:form>
+        <h:form styleClass="login_form" >
+            <h:commandButton action="#{StatefullName.relog()}" value="Выйти" >
+            </h:commandButton>
+        </h:form>
+        Вы представились как: #{StatefullName.fio},
+        #{StatefullName.status}   #{Singleton1.count}
+        <h:dataTable value="#{MedRabMB.md}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="ФИО"/>
+                </f:facet>
+                <h:outputText value="#{item.fio}">
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="ДатаРождения"/>
+                </f:facet>
+                <h:outputText value="#{item.datarojdenia}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Должность"/>
+                </f:facet>
+                <h:outputText value="#{item.doljnost.nazvanieDoljnosti}">
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Надбавка"/>
+                </f:facet>
+                <h:outputText value="#{item.nadbavkaKZarplate}">
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Отделение"/>
+                </f:facet>
+                <h:outputText value="#{item.otdelenie.nazvanieOtdelenia}">
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+
